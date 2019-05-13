@@ -1,0 +1,49 @@
+
+.autocomplete
+{
+    border:1px solid red;
+    width:50%;
+    height:500px;
+    margin-left:auto;
+    margin-right:auto;
+    display:grid;
+    grid-template-columns: 3fr 1fr;
+    grid-template-rows: 70px 70px;
+    grid-template-areas: 
+    "search-box btn"
+    "dropdown dropdown";
+}
+.search-box
+{
+  grid-area:search-box;
+border:1px solid blue;
+
+}
+input[type="text"]
+{
+    width:70%;
+    height:80px;
+    font-size: 2rem;   
+    box-shadow: -1px 2px 6px 0px rgba(0,0,0,0.75);
+}
+.btn
+{
+    grid-area:btn;
+    width:100px;
+    height:80px;
+    border:0px;
+    background-color:#32aae1; 
+    background-image: url("iconfinder_system-search_118797.svg");
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    border:1px solid green;
+ 
+}
+.dropdown
+{
+    grid-area:dropdown;
+    border:1px solid black;
+ 
+   
+}
