@@ -1,32 +1,176 @@
 <html>
 
-
 <head>
-
 <link href="style.css" rel="stylesheet" type="text/css">
+
+<script>
+
+function calcPopoverPos(trigger,popover)
+{
+   const triggerRect = trigger.getBoundingClientRect();
+   const popoverRect = popover.getBoundingClientRect();
+   const placement = popover.dataset.placement;
+   const space = 20;
+
+   if(placement==='top')
+   {
+      return{
+         left: (triggerRect.left + triggerRect.right) / 2 - popoverRect.width / 2,
+         top:  triggerRect.top - popoverRect.height  - space 
+      }
+   }
+
+   if(placement==='bottom')
+   {
+      return {
+
+         left: (triggerRect.left + triggerRect.right) / 2 - popoverRect.width /2,
+         top:triggerRect.bottom + space
+
+      }
+   }
+
+   if(placement==='right')
+   {
+      return{
+         left:triggerRect.right + space,
+         top:(triggerRect.top + triggerRect.bottom) / 2 - popoverRect.height /2
+      }
+   }
+
+   if(placement==='left')
+   {
+      return {
+         top:(triggerRect.top + triggerRect.bottom) / 2 - popoverRect.height /2 
+               }
+   }
+}
+
+</script>
+
 </head>
 
 
 <body>
 
-     <div class="autocomplete">
+    <div class="wrapper">
+    
+         <div class="top-arrow">
+           
+            <input type="image" src="up.svg" class="adjust-icon trigger" data-placement="top" data-target="pop1"> 
 
-       <form action="#" autocomplete="off">
-     
-         <input type="text" id="country" name="country" placeholder="Type Your Country" class="search-box">
-        <button type="submit" class="btn"> </button> 
+         </div>
 
-       <ul class="dropdown">
-       <li>Item 1</li>
-       <li>Item 2</li>
-       <li>Item 3</li>
-       <li>Item 4</li>
+         <div class="left-arrow">
+            <input type="image" src="left.svg" class="adjust-icon trigger" data-placement="left" data-target="pop4">
+         </div>
 
-        </ul>
+         <div class="text-container">
+          <h1>
+          <span class="teal-span">P</span>
+          <span class="blue-span">O</span>
+          <span class="purple-span">P</span>
+          <span class="orange-span">O</span>
+          <span class="teal-span" >V</span>
+          <span class="blue-span">E</span>
+          <span class="purple-span">R</span>
+          <span class="orange-span">S</span>
+        </h1>
+         </div>
 
-       </form>
+         <div class="right-arrow">
+            <input type="image" src="right.svg" class="adjust-icon trigger" data-placement="right" data-target="pop2">
+         </div>
 
-     </div>
+         <div class="down-arrow">
+                <input type="image" src="down.svg" class="adjust-icon trigger" data-placement="bottom" data-target="pop3">
+         </div>
+
+    </div>
+
+    <div id="pop1" class="popover" data-placement="top">
+
+            <p>The quick brown fox jumps over the lazy dog</p>
+        
+          </div>
+
+          <div id="pop2" class="popover" data-placement="right">
+
+               <p>The quick brown fox jumps over the lazy dog</p>
+           
+             </div>
+        
+
+          <div id="pop3" class="popover" data-placement="bottom">
+
+               <p>The quick brown fox jumps over the lazy dog</p>
+           
+             </div>
+
+             <div id="pop4" class="popover" data-placement="left">
+
+                  <p>The quick brown fox jumps over the lazy dog</p>
+              
+                </div>
+        
+        
+        
+          <script>
+             // Building the top trigger
+          const topTrigger = document.querySelector(".trigger[data-placement=top]");
+          const topPopover = document.querySelector("#pop1");
+
+          // Calculating and moving the top value of the top popover
+
+          const popoverPosition = calcPopoverPos(topTrigger,topPopover);
+          topPopover.style.left = `${popoverPosition.left}px`;
+          topPopover.style.top = `${popoverPosition.top}px`;
+
+
+        
+         
+
+         
+        
+
+         // Building the popover buttom
+
+         const bottomTrigger = document.querySelector(".trigger[data-placement=bottom]");
+         const bottomPopover = document.querySelector("#pop3");
+         
+        
+       // Calculating and moving the left and top value of the buttom popover
+       
+       const popoverPosition2 = calcPopoverPos(bottomTrigger,bottomPopover);
+       bottomPopover.style.left = `${popoverPosition2.left}px`;
+       bottomPopover.style.top = `${popoverPosition2.top}px`;
+         
+      
+
+
+      // Building the popover right
+       const rightTrigger = document.querySelector(".trigger[data-placement=right]");
+       const rightPopover = document.querySelector("#pop2");
+       
+
+         // Calculating and moving the left and top value of the right popover
+       const popoverPosition3 = calcPopoverPos(rightTrigger,rightPopover);
+       rightPopover.style.left = `${popoverPosition3.left}px`;
+       rightPopover.style.top = `${popoverPosition3.top}px`;
+
+
+          // Building the popover left
+
+           const leftTrigger = document.querySelector(".trigger[data-placement = left]");
+           const leftPopover = document.querySelector("#pop4");
+           
+
+             // Calculating and moving the left and top value of the left popover
+            const popoverPosition4 = calcPopoverPos(leftTrigger,leftPopover);
+           
+            leftPopover.style.top = `${popoverPosition4.top}px`;
+
+          </script>
 
 </body>
 
