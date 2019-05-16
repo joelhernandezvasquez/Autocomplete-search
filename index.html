@@ -16,7 +16,7 @@
          <input type="text" class="input" id="country" name="country" placeholder="Type Your Country" class="search-box">
         <button type="submit" class="btn"> </button> 
 
-       <ul class="dropdown"> </ul>
+       <ul class="dropdown"> <li>Hola</li></ul>
 
        </form>
 
@@ -127,46 +127,46 @@ const countries = [
 ]
 
 
-const input = document.querySelector("#country");
- const list = document.querySelector(".dropdown");
- const button = document.querySelector(".btn");
-const text = document.querySelector("input");
+ const autocomplete = document.querySelector(".input");
+ const searchIcon = document.querySelector(".btn");
+ const dropdown = document.querySelector(".dropdown");
 
-       input.addEventListener("input",e=>
-       {
-        const value = e.target.value.trim().toLowerCase()
-        
-        if(value)
-        {
-          list.classList.add("is-visible");
-          button.classList.add("is-filled");
-          text.classList.add("is-filled");
+ autocomplete.addEventListener("input",e=>
+ {
+    const value = e.target.value.trim().toLowerCase();
+    
+     if(value)
+     {
+         autocomplete.classList.add("is-filled");
+         searchIcon.classList.add("is-filled");
+         dropdown.classList.add("is-visible");
 
-          //Create a list of countries that match the text
-          
-          const countryList = countries.filter(country=>{
+         const countryList = countries.filter(country => 
+         {
            return country.name.toLowerCase().startsWith(value);
-        });
+         })
 
-        // Creating the list of items
+         const dropdownList = countryList.map(country => `<li> ${country.name} </li>`).join('');
+         dropdown.innerHTML = dropdownList;
+         
+     }
+     else
+     {
+         autocomplete.classList.remove("is-filled");
+         searchIcon.classList.remove("is-filled");
+         dropdown.classList.remove("is-visible");
+  
+     }
+ })
 
-        const dropdownList = countryList.map(country => {
-          console.log(country.name);
-        });
-        list.innerHTML = dropdownList;
-        console.log(dropdownList);
-        }
-        else
-        {
-          list.classList.remove("is-visible");
-          button.classList.remove("is-filled");
-          text.classList.remove("is-filled");
-        }
-       })
+ dropdown.addEventListener("click",e=>
+ {
+   const li = e.target;
+   autocomplete.value = li.textContent;
+   dropdown.innerHTML = '';
 
-      
-       
-       </script>
+ });
+</script>
 
 </body>
 
