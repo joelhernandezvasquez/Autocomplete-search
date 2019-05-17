@@ -4,6 +4,16 @@
 <head>
 
 <link href="style.css" rel="stylesheet" type="text/css">
+
+<script>
+function boldSearchTerm(str,searchTerm)
+{
+  const length = searchTerm.length;
+  const toBold = str.substring(0,length);
+  const rest = str.substring(length);
+  return `<strong>${toBold}</strong>${rest}`;
+}
+</script>
 </head>
 
 
@@ -16,7 +26,7 @@
          <input type="text" class="input" id="country" name="country" placeholder="Type Your Country" class="search-box">
         <button type="submit" class="btn"> </button> 
 
-       <ul class="dropdown"> <li>Hola</li></ul>
+       <ul class="dropdown"> </ul>
 
        </form>
 
@@ -146,7 +156,7 @@ const countries = [
            return country.name.toLowerCase().startsWith(value);
          })
 
-         const dropdownList = countryList.map(country => `<li> ${country.name} </li>`).join('');
+         const dropdownList = countryList.map(country => `<li>${boldSearchTerm(country.name,value)} </li>`).join('');
          dropdown.innerHTML = dropdownList;
          
      }
@@ -166,6 +176,8 @@ const countries = [
    dropdown.innerHTML = '';
 
  });
+
+ 
 </script>
 
 </body>
